@@ -1,0 +1,61 @@
+import { Button, VerticalBox , LineEdit, HorizontalBox} from "std-widgets.slint";
+
+export component AppWindow inherits Window {
+    in property <string> results: "";
+    callback calculate-leap-year(string);
+    background: #161748;
+    GridLayout {
+        spacing: 50px;
+        padding: 50px;
+        width: 800px;
+        Text {
+            text: "Leap Year Calculator";
+            font-size: 48px;
+            font-weight: 700;
+            horizontal-alignment:center;
+        }
+
+        HorizontalLayout {
+            row: 1;
+            padding-top: -40px;
+            Text {
+                text: "Enter a year below to see if it is a leap year";
+                font-size: 16px;
+                horizontal-alignment: center;
+            }
+        }
+
+        HorizontalLayout {
+            row: 2;
+            alignment: center;
+            padding-top: -30px;
+            year := LineEdit {
+                placeholder-text: "Enter a year";
+                horizontal-alignment: center;
+                font-size: 24px;
+                width: 200px;
+            }
+        }
+
+        HorizontalLayout {
+            row: 3;
+            alignment: center;
+            Button {
+                text: "Calculate";
+                width: 100px;
+                height: 50px;
+                primary: true;
+                clicked => {
+                    calculate-leap-year(year.text);
+                }
+            }
+        }
+        
+        Text {
+            text: root.results;
+            font-size: 24px;
+            horizontal-alignment: center;
+            row: 4;
+        }
+    }
+}
